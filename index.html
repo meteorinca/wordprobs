@@ -1,204 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Multi-Step Math Word Problems</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>🧠 Multi-Step Word Problems | 3rd & 4th Grade</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #f97316;
+      --primary-light: #fb923c;
+      --secondary: #0d9488;
+      --accent: #8b5cf6;
+      --success: #059669;
+      --warning: #d97706;
+      --error: #dc2626;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-600: #4b5563;
+      --gray-800: #1f2937;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --shadow-sm: 0 4px 6px rgba(0,0,0,0.04);
+      --shadow-md: 0 10px 20px rgba(0,0,0,0.06);
+      --transition: 0.2s ease;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 30px 18px 100px;
-      line-height: 1.5;
-      background: #f7f7fb;
-      color: #222;
+      background: linear-gradient(145deg, #fff7ed 0%, #f0fdfa 50%, #f5f3ff 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(18px);
+      border-radius: 2.5rem;
+      padding: 2rem 2.2rem;
+      box-shadow: var(--shadow-md), 0 20px 35px rgba(249,115,22,0.08);
+      border: 1px solid rgba(255,255,255,0.7);
     }
 
     h1 {
-      text-align: center;
-      margin-bottom: 30px;
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #f97316, #0d9488);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .problem {
+    .subtitle {
+      color: #4b5563;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+
+    .difficulty-tabs {
+      display: flex;
+      gap: 0.8rem;
+      margin: 1.8rem 0 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .diff-btn {
       background: white;
-      padding: 18px;
-      margin-bottom: 18px;
-      border-radius: 14px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    }
-
-    input {
-      width: 180px;
-      padding: 10px;
-      font-size: 16px;
-      margin-top: 10px;
-      border: 2px solid #ccc;
-      border-radius: 8px;
-    }
-
-    .result {
-      margin-left: 10px;
-      font-weight: bold;
-    }
-
-    .correct {
-      color: green;
-    }
-
-    .wrong {
-      color: crimson;
-    }
-
-    #checkAll {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      padding: 16px 24px;
-      font-size: 18px;
-      font-weight: bold;
-      border: none;
-      border-radius: 999px;
-      background: #1f5cff;
-      color: white;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 2.5rem;
+      padding: 0.7rem 1.8rem;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--gray-600);
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #ffffff;
+      box-shadow: var(--shadow-sm);
+      flex: 1;
+      justify-content: center;
     }
 
-    #checkAll:hover {
-      background: #1547c7;
+    .diff-btn:hover {
+      border-color: var(--primary-light);
+      transform: translateY(-2px);
     }
 
-    #score {
-      position: fixed;
-      left: 22px;
-      bottom: 28px;
+    .diff-btn.active {
+      background: linear-gradient(135deg, #f97316, #fb923c);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 10px 15px rgba(249,115,22,0.3);
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: #f8fafc;
+      padding: 1rem 1.4rem;
+      border-radius: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    select, .btn {
+      padding: 0.6rem 1.2rem;
+      border-radius: 2rem;
+      border: 1px solid var(--gray-300);
+      font-weight: 600;
       background: white;
-      padding: 12px 16px;
-      border-radius: 999px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.15);
-      font-weight: bold;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      border: none;
+      font-weight: 700;
+      box-shadow: 0 8px 16px rgba(249,115,22,0.25);
+    }
+
+    .btn-primary:hover {
+      background: #ea580c;
+    }
+
+    .problem-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin: 1.8rem 0;
+    }
+
+    .problem-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      border: 1px solid var(--gray-200);
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s;
+    }
+
+    .prob-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .prob-num {
+      background: #ffedd5;
+      color: #c2410c;
+      font-weight: 800;
+      width: 2.2rem;
+      height: 2.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      font-size: 1rem;
+    }
+
+    .prob-text {
+      font-weight: 600;
+      font-size: 1.15rem;
+      color: #1f2937;
+      flex: 1;
+      line-height: 1.4;
+    }
+
+    .answer-area {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-left: 3.2rem;
+    }
+
+    .blank-input {
+      width: 180px;
+      padding: 0.5rem 0.8rem;
+      border: 2px dashed var(--gray-300);
+      border-radius: 1rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      background: #f9fafb;
+      transition: 0.2s;
+    }
+
+    .blank-input:focus {
+      border-color: var(--primary);
+      outline: none;
+      background: #fff7ed;
+    }
+
+    .feedback-text {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+
+    .correct-fb { color: var(--success); }
+    .wrong-fb { color: var(--error); }
+
+    .info-box {
+      background: #fef9c3;
+      border-left: 5px solid var(--warning);
+      padding: 1rem 1.5rem;
+      border-radius: 1rem;
+      margin: 1rem 0 1.8rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 600px) {
+      .container { padding: 1.2rem; }
+      .prob-text { font-size: 1rem; }
+      .answer-area { margin-left: 0; }
     }
   </style>
 </head>
 <body>
+<div class="container">
+  <h1>📝 Multi-Step Word Problems</h1>
+  <div class="subtitle">Late 3rd · Early 4th Grade | Choose your challenge</div>
 
-  <h1>Multi-Step Math Word Problems</h1>
+  <!-- Difficulty Level Tabs -->
+  <div class="difficulty-tabs" id="difficultyTabs">
+    <button class="diff-btn active" data-diff="easy">🌱 <span>Easy</span></button>
+    <button class="diff-btn" data-diff="medium">🌿 <span>Medium</span></button>
+    <button class="diff-btn" data-diff="hard">🌳 <span>Hard</span></button>
+  </div>
 
-  <div id="problems"></div>
+  <div class="controls">
+    <div style="display: flex; gap: 1rem; align-items: center;">
+      <label>📋 Problems:</label>
+      <select id="problemCount">
+        <option value="3">3</option>
+        <option value="5" selected>5</option>
+        <option value="8">8</option>
+      </select>
+    </div>
+    <button class="btn btn-primary" id="newSetBtn">🔄 New Set</button>
+  </div>
 
-  <div id="score">Score: 0 / 15</div>
-  <button id="checkAll" onclick="checkAll()">Check All</button>
+  <div id="topicInfo" class="info-box">
+    💡 <strong>Easy:</strong> Two-step problems with smaller numbers. Read carefully and show your work!
+  </div>
 
-  <script>
-    const problems = [
-      {
-        text: "1. Maya has 6 packs of stickers. Each pack has 12 stickers. She gives 15 stickers to her brother and 18 stickers to her friend. How many stickers does Maya have left?",
-        answers: ["39", "39 stickers"]
-      },
-      {
-        text: "2. There are 84 students going on a field trip. Each bus holds 28 students. The school already has 2 buses reserved. How many more buses do they need?",
-        answers: ["1", "1 bus", "1 more bus"]
-      },
-      {
-        text: "3. A garden is 12 feet long and 8 feet wide. A smaller square flower bed inside it is 3 feet on each side. How much garden space is left outside the flower bed?",
-        answers: ["87", "87 square feet", "87 sq ft"]
-      },
-      {
-        text: "4. There are 5 pizzas. Each pizza has 8 slices. The students eat 27 slices. How many slices are left?",
-        answers: ["13", "13 slices"]
-      },
-      {
-        text: "5. Jordan has $50. He buys 3 notebooks for $4 each and a backpack for $23. How much money does he have left?",
-        answers: ["15", "$15", "15 dollars"]
-      },
-      {
-        text: "6. Ava reads 18 pages on Monday, 24 pages on Tuesday, and 16 pages on Wednesday. Her book has 90 pages. How many pages does she still need to read?",
-        answers: ["32", "32 pages"]
-      },
-      {
-        text: "7. A rectangular dog park is 18 meters long and 9 meters wide. Workers put a gate that is 3 meters wide on one side, so they do not need fence there. How many meters of fencing do they need?",
-        answers: ["51", "51 meters", "51 m"]
-      },
-      {
-        text: "8. Soccer practice starts at 4:20 PM and lasts 1 hour 35 minutes. After practice, Leo spends 25 minutes walking home. What time does Leo get home?",
-        answers: ["6:20", "6:20 pm", "6:20pm", "6:20 PM"]
-      },
-      {
-        text: "9. A library has 4 shelves. Each shelf has 36 books. The librarian adds 28 more books, then removes 17 damaged books. How many books are there now?",
-        answers: ["155", "155 books"]
-      },
-      {
-        text: "10. Adult tickets cost $12 each. Child tickets cost $7 each. A family buys 2 adult tickets and 3 child tickets. They pay with $60. How much change do they get?",
-        answers: ["15", "$15", "15 dollars"]
-      },
-      {
-        text: "11. A teacher has 96 pencils. She gives each student 4 pencils. After giving pencils to the class, she has 20 pencils left. How many students got pencils?",
-        answers: ["19", "19 students"]
-      },
-      {
-        text: "12. Rafael draws a rectangle that is 14 inches long and 9 inches wide. His sister draws one that is 12 inches long and 11 inches wide. Whose rectangle has the greater area, and how much greater is it?",
-        answers: ["sister by 6", "sister, by 6", "sister 6", "sister by 6 square inches", "sister by 6 sq in"]
-      },
-      {
-        text: "13. A class bakes 8 trays of brownies. Each tray has 15 brownies. They sell 86 brownies and give 12 brownies to teachers. How many brownies are left?",
-        answers: ["22", "22 brownies"]
-      },
-      {
-        text: "14. A rope is 120 inches long. Sam cuts off 3 pieces that are each 18 inches long. Then he cuts the rest into 6 equal pieces. How long is each of the 6 equal pieces?",
-        answers: ["11", "11 inches", "11 in"]
-      },
-      {
-        text: "15. A school has 5 classrooms. Each classroom has 24 students. For an assembly, students sit in rows of 10. How many full rows can they make, and how many students are left over?",
-        answers: ["12 full rows, 0 left", "12 rows 0 left", "12 rows 0", "12 full rows and 0 left over", "12"]
+  <div id="problemsContainer" class="problem-grid"></div>
+
+  <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
+    <button class="btn btn-primary" id="checkAllBtn">✅ Check All Answers</button>
+  </div>
+  <div id="globalMessage" style="text-align: center; margin-top: 1rem; font-weight: 600;"></div>
+</div>
+
+<!-- Script will load problems from external file -->
+<script type="module">
+  import { problemsData } from './word-problems-data.js';
+
+  (function() {
+    // ----- State -----
+    let currentDifficulty = 'easy';
+    let currentProblems = [];
+    
+    const difficultyInfo = {
+      easy: "🌱 <strong>Easy:</strong> Two-step problems with numbers up to 50. Great for building confidence!",
+      medium: "🌿 <strong>Medium:</strong> Two or three steps with larger numbers. Think before you calculate!",
+      hard: "🌳 <strong>Hard:</strong> Three or more steps, mixed operations. You're a problem-solving champion!"
+    };
+
+    // ----- Helpers -----
+    const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
+    
+    function getProblemsByDifficulty(difficulty) {
+      const allProblems = problemsData[difficulty] || problemsData.easy;
+      return shuffle(allProblems);
+    }
+
+    function updateUI() {
+      document.getElementById('topicInfo').innerHTML = difficultyInfo[currentDifficulty];
+      document.querySelectorAll('.diff-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.diff === currentDifficulty);
+      });
+      generateNewSet();
+    }
+
+    function generateNewSet() {
+      const count = parseInt(document.getElementById('problemCount').value);
+      const shuffledPool = getProblemsByDifficulty(currentDifficulty);
+      currentProblems = shuffledPool.slice(0, count);
+      renderProblems();
+      document.getElementById('globalMessage').innerText = '';
+    }
+
+    function normalizeAnswer(str) {
+      return str.replace(/\s+/g, ' ').trim().toLowerCase();
+    }
+
+    function renderProblems() {
+      const container = document.getElementById('problemsContainer');
+      if (!currentProblems.length) {
+        container.innerHTML = '<p style="text-align:center; color:gray;">No problems loaded. Check data file.</p>';
+        return;
       }
-    ];
-
-    const container = document.getElementById("problems");
-
-    problems.forEach((problem, index) => {
-      const div = document.createElement("div");
-      div.className = "problem";
-      div.innerHTML = `
-        <p>${problem.text}</p>
-        <input id="answer-${index}" placeholder="Your answer" />
-        <span id="result-${index}" class="result"></span>
-      `;
-      container.appendChild(div);
-    });
-
-    function cleanAnswer(answer) {
-      return answer
-        .toLowerCase()
-        .replace(/\$/g, "")
-        .replace(/\./g, "")
-        .replace(/\s+/g, " ")
-        .trim();
+      container.innerHTML = currentProblems.map((p, idx) => {
+        return `
+          <div class="problem-card" data-index="${idx}">
+            <div class="prob-header">
+              <div class="prob-num">${idx+1}</div>
+              <div class="prob-text">${p.text}</div>
+            </div>
+            <div class="answer-area">
+              <label style="font-weight:600;">Your answer:</label>
+              <input class="blank-input" id="ans${idx}" placeholder="e.g. 39 stickers" data-index="${idx}" autocomplete="off">
+              <span class="feedback-text" id="fb${idx}"></span>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     function checkAll() {
-      let score = 0;
-
-      problems.forEach((problem, index) => {
-        const input = document.getElementById(`answer-${index}`);
-        const result = document.getElementById(`result-${index}`);
-
-        const userAnswer = cleanAnswer(input.value);
-        const correctAnswers = problem.answers.map(cleanAnswer);
-
-        if (correctAnswers.includes(userAnswer)) {
-          result.textContent = "Correct";
-          result.className = "result correct";
-          score++;
+      let correctCount = 0;
+      currentProblems.forEach((p, idx) => {
+        const input = document.getElementById(`ans${idx}`);
+        const fb = document.getElementById(`fb${idx}`);
+        if (!input) return;
+        
+        const userAnswer = normalizeAnswer(input.value);
+        const acceptableAnswers = p.answers.map(a => normalizeAnswer(a));
+        
+        const isCorrect = acceptableAnswers.includes(userAnswer) && userAnswer !== '';
+        
+        if (isCorrect) {
+          correctCount++;
+          input.style.border = '2px solid #059669';
+          fb.innerHTML = '✅';
+          fb.className = 'feedback-text correct-fb';
         } else {
-          result.textContent = "Try again";
-          result.className = "result wrong";
+          input.style.border = '2px solid #dc2626';
+          const displayAnswer = p.answers[0] || '?';
+          fb.innerHTML = `❌ (e.g. ${displayAnswer})`;
+          fb.className = 'feedback-text wrong-fb';
         }
       });
-
-      document.getElementById("score").textContent = `Score: ${score} / ${problems.length}`;
+      document.getElementById('globalMessage').innerText = `${correctCount}/${currentProblems.length} correct`;
     }
-  </script>
 
+    // Event Listeners
+    document.getElementById('difficultyTabs').addEventListener('click', (e) => {
+      const btn = e.target.closest('.diff-btn');
+      if (!btn) return;
+      currentDifficulty = btn.dataset.diff;
+      updateUI();
+    });
+
+    document.getElementById('newSetBtn').addEventListener('click', generateNewSet);
+    document.getElementById('checkAllBtn').addEventListener('click', checkAll);
+    document.getElementById('problemCount').addEventListener('change', generateNewSet);
+
+    // Allow Enter key to trigger check on input fields
+    document.getElementById('problemsContainer').addEventListener('keypress', (e) => {
+      if (e.target.classList.contains('blank-input') && e.key === 'Enter') {
+        document.getElementById('checkAllBtn').click();
+      }
+    });
+
+    // Init
+    updateUI();
+  })();
+</script>
 </body>
 </html>
