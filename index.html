@@ -234,6 +234,51 @@
       font-weight: 500;
     }
 
+
+    .control-group {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .floating-check-wrap {
+      position: fixed;
+      right: 1.2rem;
+      bottom: 1.2rem;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+      pointer-events: none;
+    }
+
+    .floating-check-wrap .btn {
+      pointer-events: auto;
+      padding: 0.85rem 1.3rem;
+      border-radius: 999px;
+      font-size: 1rem;
+    }
+
+    #globalMessage {
+      background: rgba(255,255,255,0.94);
+      border: 1px solid var(--gray-200);
+      border-radius: 999px;
+      padding: 0.45rem 0.8rem;
+      box-shadow: var(--shadow-sm);
+      font-weight: 700;
+      color: var(--gray-800);
+      max-width: min(90vw, 420px);
+      text-align: right;
+    }
+
+    .data-error {
+      background: #fee2e2;
+      border-left: 5px solid var(--error);
+      color: #991b1b;
+    }
+
     @media (max-width: 600px) {
       .container { padding: 1.2rem; }
       .prob-text { font-size: 1rem; }
@@ -254,8 +299,16 @@
   </div>
 
   <div class="controls">
-    <div style="display: flex; gap: 1rem; align-items: center;">
-      <label>📋 Problems:</label>
+    <div class="control-group">
+      <label for="dataFileSelect">🗂️ Set:</label>
+      <select id="dataFileSelect">
+        <option value="word-problems-data.js" selected>word-problems-data.js</option>
+        <option value="word-problems-data2.js">word-problems-data2.js</option>
+        <option value="word-problems-data3.js">word-problems-data3.js</option>
+      </select>
+    </div>
+    <div class="control-group">
+      <label for="problemCount">📋 Problems:</label>
       <select id="problemCount">
         <option value="3">3</option>
         <option value="5" selected>5</option>
@@ -271,21 +324,20 @@
 
   <div id="problemsContainer" class="problem-grid"></div>
 
-  <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
-    <button class="btn btn-primary" id="checkAllBtn">✅ Check All Answers</button>
+  <div class="floating-check-wrap">
+    <div id="globalMessage" aria-live="polite"></div>
+    <button class="btn btn-primary" id="checkAllBtn">✅ Check Answered</button>
   </div>
-  <div id="globalMessage" style="text-align: center; margin-top: 1rem; font-weight: 600;"></div>
 </div>
 
-<!-- Script will load problems from external file -->
+<!-- Script will load problems from whichever external file is selected -->
 <script type="module">
-  import { problemsData } from './word-problems-data.js';
-
   (function() {
     // ----- State -----
     let currentDifficulty = 'easy';
     let currentProblems = [];
-    
+    let problemsData = {};
+
     const difficultyInfo = {
       easy: "🌱 <strong>Easy:</strong> Two-step problems with numbers up to 50. Great for building confidence!",
       medium: "🌿 <strong>Medium:</strong> Two or three steps with larger numbers. Think before you calculate!",
@@ -294,14 +346,47 @@
 
     // ----- Helpers -----
     const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
-    
+    const globalMessage = document.getElementById('globalMessage');
+    const topicInfo = document.getElementById('topicInfo');
+
+    function normalizeAnswer(str) {
+      return str.replace(/\s+/g, ' ').trim().toLowerCase();
+    }
+
+    async function loadProblemsFile(filename) {
+      try {
+        topicInfo.classList.remove('data-error');
+        topicInfo.innerHTML = `Loading ${filename}...`;
+        globalMessage.innerText = '';
+
+        // Cache-buster lets GitHub Pages pick up newly edited data files faster.
+        const mod = await import(`./${filename}?v=${Date.now()}`);
+        problemsData = mod.problemsData || mod.default || {};
+
+        if (!problemsData.easy && !problemsData.medium && !problemsData.hard) {
+          throw new Error('No easy, medium, or hard lists found.');
+        }
+
+        updateUI();
+      } catch (err) {
+        problemsData = {};
+        currentProblems = [];
+        renderProblems();
+        topicInfo.classList.add('data-error');
+        topicInfo.innerHTML = `Could not load <strong>${filename}</strong>. Make sure it is in the same folder and exports <code>problemsData</code>.`;
+        globalMessage.innerText = '';
+        console.error(err);
+      }
+    }
+
     function getProblemsByDifficulty(difficulty) {
-      const allProblems = problemsData[difficulty] || problemsData.easy;
+      const allProblems = problemsData[difficulty] || problemsData.easy || [];
       return shuffle(allProblems);
     }
 
     function updateUI() {
-      document.getElementById('topicInfo').innerHTML = difficultyInfo[currentDifficulty];
+      topicInfo.classList.remove('data-error');
+      topicInfo.innerHTML = difficultyInfo[currentDifficulty];
       document.querySelectorAll('.diff-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.diff === currentDifficulty);
       });
@@ -309,21 +394,17 @@
     }
 
     function generateNewSet() {
-      const count = parseInt(document.getElementById('problemCount').value);
+      const count = parseInt(document.getElementById('problemCount').value, 10);
       const shuffledPool = getProblemsByDifficulty(currentDifficulty);
       currentProblems = shuffledPool.slice(0, count);
       renderProblems();
-      document.getElementById('globalMessage').innerText = '';
-    }
-
-    function normalizeAnswer(str) {
-      return str.replace(/\s+/g, ' ').trim().toLowerCase();
+      globalMessage.innerText = '';
     }
 
     function renderProblems() {
       const container = document.getElementById('problemsContainer');
       if (!currentProblems.length) {
-        container.innerHTML = '<p style="text-align:center; color:gray;">No problems loaded. Check data file.</p>';
+        container.innerHTML = '<p style="text-align:center; color:gray;">No problems loaded. Check the selected data file.</p>';
         return;
       }
       container.innerHTML = currentProblems.map((p, idx) => {
@@ -334,7 +415,7 @@
               <div class="prob-text">${p.text}</div>
             </div>
             <div class="answer-area">
-              <label style="font-weight:600;">Your answer:</label>
+              <label style="font-weight:600;" for="ans${idx}">Your answer:</label>
               <input class="blank-input" id="ans${idx}" placeholder="e.g. 39 stickers" data-index="${idx}" autocomplete="off">
               <span class="feedback-text" id="fb${idx}"></span>
             </div>
@@ -344,17 +425,30 @@
     }
 
     function checkAll() {
+      let checkedCount = 0;
       let correctCount = 0;
+      let blankCount = 0;
+
       currentProblems.forEach((p, idx) => {
         const input = document.getElementById(`ans${idx}`);
         const fb = document.getElementById(`fb${idx}`);
-        if (!input) return;
-        
+        if (!input || !fb) return;
+
         const userAnswer = normalizeAnswer(input.value);
-        const acceptableAnswers = p.answers.map(a => normalizeAnswer(a));
-        
-        const isCorrect = acceptableAnswers.includes(userAnswer) && userAnswer !== '';
-        
+
+        // Do not mark or grade blank answers.
+        if (userAnswer === '') {
+          blankCount++;
+          input.style.border = '2px dashed #d1d5db';
+          fb.innerHTML = '';
+          fb.className = 'feedback-text';
+          return;
+        }
+
+        checkedCount++;
+        const acceptableAnswers = (p.answers || []).map(a => normalizeAnswer(String(a)));
+        const isCorrect = acceptableAnswers.includes(userAnswer);
+
         if (isCorrect) {
           correctCount++;
           input.style.border = '2px solid #059669';
@@ -362,12 +456,18 @@
           fb.className = 'feedback-text correct-fb';
         } else {
           input.style.border = '2px solid #dc2626';
-          const displayAnswer = p.answers[0] || '?';
-          fb.innerHTML = `❌ (e.g. ${displayAnswer})`;
+          fb.innerHTML = '❌ Try again';
           fb.className = 'feedback-text wrong-fb';
         }
       });
-      document.getElementById('globalMessage').innerText = `${correctCount}/${currentProblems.length} correct`;
+
+      if (checkedCount === 0) {
+        globalMessage.innerText = 'Answer at least one problem first.';
+      } else if (blankCount > 0) {
+        globalMessage.innerText = `${correctCount}/${checkedCount} answered correct · ${blankCount} blank`;
+      } else {
+        globalMessage.innerText = `${correctCount}/${checkedCount} answered correct`;
+      }
     }
 
     // Event Listeners
@@ -378,11 +478,15 @@
       updateUI();
     });
 
+    document.getElementById('dataFileSelect').addEventListener('change', (e) => {
+      loadProblemsFile(e.target.value);
+    });
+
     document.getElementById('newSetBtn').addEventListener('click', generateNewSet);
     document.getElementById('checkAllBtn').addEventListener('click', checkAll);
     document.getElementById('problemCount').addEventListener('change', generateNewSet);
 
-    // Allow Enter key to trigger check on input fields
+    // Allow Enter key to trigger check on input fields.
     document.getElementById('problemsContainer').addEventListener('keypress', (e) => {
       if (e.target.classList.contains('blank-input') && e.key === 'Enter') {
         document.getElementById('checkAllBtn').click();
@@ -390,7 +494,7 @@
     });
 
     // Init
-    updateUI();
+    loadProblemsFile(document.getElementById('dataFileSelect').value);
   })();
 </script>
 </body>
