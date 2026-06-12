@@ -128,7 +128,7 @@ export const problemsData = {
 
   hard: [
     {
-      text: "A school has 648 students going on a field trip. Each bus holds 52 students. The school reserves 14 buses. How many students will not have a seat?",
+      text: "A school has 652 students going on a field trip. Each bus holds 46 students. The school reserves 14 buses. How many students will not have a seat?",
       answers: ["8", "8 students", "8 students will not have a seat"]
     },
     {
