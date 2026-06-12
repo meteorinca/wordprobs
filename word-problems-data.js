@@ -113,7 +113,7 @@ export const problemsData = {
       answers: ["40", "40 boxes"]
     },
     {
-      text: "Jayden runs 3 laps around a track every morning. Each lap is 0.25 miles. He also runs an extra 1.5 miles on Saturdays. How many miles does he run in one week (Monday through Sunday)?",
+      text: "Jayden runs 3 laps around a track every morning except on Sundays. Each lap is 0.25 miles. He also runs an extra 1.5 miles on Saturdays. How many miles does he run in one week (Monday through Sat)?",
       answers: ["6", "6 miles", "6.0 miles"]
     },
     {
@@ -160,7 +160,7 @@ export const problemsData = {
       answers: ["9:25", "9:25 pm", "9:25pm", "9:25 PM"]
     },
     {
-      text: "A library has 5 sections. Sections A-C have 1,248 books each. Section D has 2,137 books. Section E has 963 books. The library wants to reorganize so all 5 sections have equal books. How many per section?",
+      text: "A library has 5 sections. Sections A-C have 1,248 books each. Section D has 2,138 books. Section E has 963 books. The library wants to reorganize so all 5 sections have equal books. How many per section?",
       answers: ["1369", "1,369", "1369 books"]
     },
     {
@@ -172,7 +172,7 @@ export const problemsData = {
       answers: ["21.7", "21.7 miles", "21.7 mi"]
     },
     {
-      text: " A class of 28 students is painting a mural. They have 9 bottles of blue paint with 340 ml each, and 6 bottles of yellow with 275 ml each. They mix blue and yellow equally. How many ml of mixed paint total?",
+      text: " A class of 28 students is painting a mural. They have 9 bottles of blue paint with 340 ml each, and 6 bottles of yellow with 275 ml each. They mix all the bottles. How many ml of mixed paint total?",
       answers: ["4710", "4,710", "4710 ml"]
     },
     {
