@@ -1,196 +1,191 @@
-
+// word-problems-data.js
 export const problemsData = {
+  easy: [
+    {
+      text: "Emily has 2/3 of a chocolate bar. She finds another 1/6 of a bar. How much chocolate does she have in total?",
+      answers: ["5/6", "5/6 of a bar", "5/6 bar"]
+    },
+    {
+      text: "A pizza is cut into 12 equal slices. Alex eats 1/4 of the pizza, and Bella eats 1/3 of the pizza. How many slices are left?",
+      answers: ["5", "5 slices"]
+    },
+    {
+      text: "Jake buys a toy for $5.75 and a book for $3.25. He pays with a $20 bill. How much change does he get?",
+      answers: ["11", "$11", "11 dollars"]
+    },
+    {
+      text: "A recipe uses 2 1/4 cups of flour for one batch. How many cups of flour are needed for 3 batches?",
+      answers: ["6 3/4 cups", "6.75 cups", "6 3/4"]
+    },
+    {
+      text: "A rectangle is 9 feet long and 6 feet wide. A square with side length 3 feet is cut out from inside. What is the remaining area?",
+      answers: ["45", "45 square feet", "45 sq ft"]
+    },
+    {
+      text: "School starts at 8:15 AM. Lunch is 3 hours and 20 minutes later. What time is lunch?",
+      answers: ["11:35 AM", "11:35", "11:35 am"]
+    },
+    {
+      text: "A rope is 5 feet long. How many inches long is it?",
+      answers: ["60", "60 inches", "60 in"]
+    },
+    {
+      text: "A box has a length of 8 cm, width of 5 cm, and height of 2 cm. What is the volume?",
+      answers: ["80", "80 cubic cm", "80 cm³"]
+    },
+    {
+      text: "A cat weighs 9 pounds. A dog weighs 4 times as much. How much does the dog weigh?",
+      answers: ["36", "36 pounds", "36 lbs"]
+    },
+    {
+      text: "There are 74 pencils to be packed into boxes of 8. How many full boxes can be made, and how many pencils are left?",
+      answers: ["9 full boxes, 2 pencils left", "9 boxes, 2 pencils", "9 R2", "9, 2"]
+    },
+    {
+      text: "A tank had 7/8 gallon of water. After watering plants, 1/4 gallon is left. How much water was used?",
+      answers: ["5/8", "5/8 gallon", "5/8 of a gallon"]
+    },
+    {
+      text: "Mia buys 3 notebooks for $2.50 each and a pack of pens for $1.75. How much does she spend?",
+      answers: ["9.25", "$9.25", "9.25 dollars"]
+    },
+    {
+      text: "A square garden has a side length of 12 meters. What is the perimeter?",
+      answers: ["48", "48 meters", "48 m"]
+    },
+    {
+      text: "Calculate 3 + 4 × 5.",
+      answers: ["23"]
+    },
+    {
+      text: "The heights of 4 plants are 10 cm, 14 cm, 12 cm, and 16 cm. What is the mean (average) height?",
+      answers: ["13", "13 cm", "13 centimeters"]
+    }
+  ],
 
+  medium: [
+    {
+      text: "A recipe calls for 2/3 cup of sugar for one batch. How much sugar is needed for 4 batches?",
+      answers: ["2 2/3 cups", "8/3 cups", "2 2/3", "2.67 cups"]
+    },
+    {
+      text: "Liam buys a shirt for $24.50 and a pair of jeans for $35.75. There is a 6% sales tax on the total. What is the total cost rounded to the nearest cent?",
+      answers: ["63.87", "$63.87", "63.87 dollars"]
+    },
+    {
+      text: "A box is 5 1/2 inches long, 4 inches wide, and 2 inches tall. What is the volume?",
+      answers: ["44", "44 cubic inches", "44 in³"]
+    },
+    {
+      text: "A runner runs 2.5 kilometers. How many meters is that? Then she runs another 300 meters. How many meters in total?",
+      answers: ["2800", "2,800 meters", "2800 m"]
+    },
+    {
+      text: "A movie starts at 2:45 PM and ends at 5:10 PM. How long is the movie?",
+      answers: ["2 hours 25 minutes", "2 hr 25 min", "2:25", "2 h 25 min"]
+    },
+    {
+      text: "A small bottle holds 3/4 liter of water. A large bottle holds 5 times as much. How many liters does the large bottle hold?",
+      answers: ["3 3/4 liters", "3.75 liters", "15/4 liters", "3 3/4"]
+    },
+    {
+      text: "A rectangular room is 15 feet by 10 feet. There is a closet inside that is a rectangle 4 feet by 3 feet. What is the area of the room not including the closet?",
+      answers: ["138", "138 square feet", "138 sq ft"]
+    },
+    {
+      text: "A 12.6 meter rope is cut into 3 equal pieces. How long is each piece?",
+      answers: ["4.2", "4.2 meters", "4.2 m"]
+    },
+    {
+      text: "A baker uses 2/5 cup of milk and 1/4 cup of oil. How many cups of liquid are used in total?",
+      answers: ["13/20", "13/20 cup", "0.65 cup"]
+    },
+    {
+      text: "There are 256 students. Each bus holds 45 students. How many buses are needed so all students can go?",
+      answers: ["6", "6 buses", "6 bus"]
+    },
+    {
+      text: "A pen costs $1.25. How much do 8 pens cost?",
+      answers: ["10.00", "$10.00", "10 dollars", "10"]
+    },
+    {
+      text: "What is (8 + 2) × 3 – 5?",
+      answers: ["25"]
+    },
+    {
+      text: "A rectangle has an area of 72 square centimeters and a width of 8 cm. What is its length?",
+      answers: ["9", "9 cm", "9 centimeters"]
+    },
+    {
+      text: "Maya's piano lesson starts at 4:30 PM and ends at 5:15 PM. Then she practices for 40 more minutes. What time does she finish practicing?",
+      answers: ["5:55 PM", "5:55", "5:55 pm"]
+    },
+    {
+      text: "There are 24 students in a class. 3/8 of them play soccer. How many students play soccer?",
+      answers: ["9", "9 students"]
+    }
+  ],
 
-easy: [
-  {
-    text: "Mr. Chen bought 360 stickers to share equally among 40 students. But some students didn't come, and each student who came got 3 more stickers than planned. If 24 stickers were left, how many students attended?",
-    answers: ["32", "32 students"]
-  },
-  {
-    text: "A bakery prepared 480 cupcakes to sell equally over 12 days. However, they sold 4 more cupcakes per day than planned, and ended with 48 cupcakes left. How many days did they sell cupcakes?",
-    answers: ["10", "10 days"]
-  },
-  {
-    text: "Mrs. Patel ordered 600 naan breads for 150 guests at her dinner party. Each guest was supposed to get 4 naans, but fewer guests came and everyone ate 2 more naans than planned. If 120 naans were left, how many guests attended?",
-    answers: ["120", "120 guests"]
-  },
-  {
-    text: "A school has 540 pencils to distribute equally among 30 classrooms. Some classrooms closed, and each remaining classroom got 9 more pencils than planned. If 45 pencils were left, how many classrooms opened?",
-    answers: ["25", "25 classrooms"]
-  },
-  {
-    text: "Mr. Kim bought 720 mangoes to share equally among 60 neighbors. Fewer neighbors came, and each got 6 more mangoes than planned. If 90 mangoes were left, how many neighbors attended?",
-    answers: ["50", "50 neighbors"]
-  },
-  {
-    text: "A store has 840 pens to pack equally into 40 boxes. Some boxes broke, and each remaining box got 7 more pens than planned. If 56 pens were left, how many boxes were used?",
-    answers: ["35", "35 boxes"]
-  },
-  {
-    text: "Mrs. Lee ordered 900 cookies for 180 children at a party. Each child was supposed to get 5 cookies, but fewer children came and each got 3 more cookies. If 135 cookies were left, how many children attended?",
-    answers: ["150", "150 children"]
-  },
-  {
-    text: "A farmer has 1,000 apples to distribute equally among 50 baskets. Some baskets were damaged, and each remaining basket got 10 more apples than planned. If 100 apples were left, how many baskets were used?",
-    answers: ["40", "40 baskets"]
-  },
-  {
-    text: "Mr. Santos bought 450 bottles of water for 90 guests at an event. Fewer guests came, and each got 2 more bottles than planned. If 60 bottles were left, how many guests attended?",
-    answers: ["75", "75 guests"]
-  },
-  {
-    text: "A gym has 630 exercise mats to share equally among 45 classes. Some classes were canceled, and each remaining class got 14 more mats than planned. If 75 mats were left, how many classes used mats?",
-    answers: ["35", "35 classes"]
-  },
-  {
-    text: "Mrs. Wong ordered 560 dumplings for 70 guests. Each guest was supposed to get 8 dumplings, but fewer guests came and each got 4 more dumplings. If 80 dumplings were left, how many guests attended?",
-    answers: ["56", "56 guests"]
-  },
-  {
-    text: "A library has 720 books to distribute equally among 24 shelves. Some shelves were broken, and each remaining shelf got 15 more books than planned. If 96 books were left, how many shelves were used?",
-    answers: ["20", "20 shelves"]
-  },
-  {
-    text: "Mr. Nguyen bought 800 oranges for 100 families. Fewer families came, and each got 5 more oranges than planned. If 100 oranges were left, how many families attended?",
-    answers: ["80", "80 families"]
-  },
-  {
-    text: "A café prepared 660 muffins for 55 customers. Each customer was supposed to get 12 muffins, but fewer customers came and each got 6 more muffins. If 90 muffins were left, how many customers attended?",
-    answers: ["45", "45 customers"]
-  },
-  {
-    text: "Mrs. Ahmad ordered 1,080 candies for 120 children. Each child was supposed to get 9 candies, but fewer children came and each got 3 more candies. If 144 candies were left, how many children attended?",
-    answers: ["100", "100 children"]
-  }
-],
-
-
-medium: [
-  {
-    text: "Mrs. Owen ordered 500 chicken wings for 250 guests. Each guest was supposed to get 2 wings, but fewer guests came and each got 1 more wing than planned. If 92 wings were left, how many guests attended?",
-    answers: ["204", "204 guests"]
-  },
-  {
-    text: "A restaurant prepared 1,200 sushi pieces for 300 customers. Each customer was supposed to get 4 pieces, but fewer customers came and each got 2 more pieces. If 180 pieces were left, how many customers attended?",
-    answers: ["255", "255 customers"]
-  },
-  {
-    text: "Mr. Lee bought 960 donuts for 160 students. Each student was supposed to get 6 donuts, but fewer students came and each got 3 more donuts. If 144 donuts were left, how many students attended?",
-    answers: ["132", "132 students"]
-  },
-  {
-    text: "A bakery made 1,500 cookies for 200 families. Each family was supposed to get 7.5 cookies, but fewer families came and each got 2.5 more cookies. If 200 cookies were left, how many families attended?",
-    answers: ["160", "160 families"]
-  },
-  {
-    text: "Mrs. Kim ordered 2,000 rice balls for 400 guests. Each guest was supposed to get 5 rice balls, but fewer guests came and each got 2 more rice balls. If 280 rice balls were left, how many guests attended?",
-    answers: ["336", "336 guests"]
-  },
-  {
-    text: "A store has 1,800 notebooks for 300 classrooms. Each classroom was supposed to get 6 notebooks, but fewer classrooms came and each got 3 more notebooks. If 216 notebooks were left, how many classrooms used notebooks?",
-    answers: ["270", "270 classrooms"]
-  },
-  {
-    text: "Mr. Park bought 1,400 apples for 280 families. Each family was supposed to get 5 apples, but fewer families came and each got 2 more apples. If 160 apples were left, how many families attended?",
-    answers: ["240", "240 families"]
-  },
-  {
-    text: "A café prepared 2,200 pastries for 220 customers. Each customer was supposed to get 10 pastries, but fewer customers came and each got 4 more pastries. If 320 pastries were left, how many customers attended?",
-    answers: ["180", "180 customers"]
-  },
-  {
-    text: "Mrs. Chen ordered 1,680 candies for 240 children. Each child was supposed to get 7 candies, but fewer children came and each got 3 more candies. If 192 candies were left, how many children attended?",
-    answers: ["200", "200 children"]
-  },
-  {
-    text: "A gym has 2,400 exercise balls for 400 teams. Each team was supposed to get 6 balls, but fewer teams came and each got 4 more balls. If 360 balls were left, how many teams used balls?",
-    answers: ["320", "320 teams"]
-  },
-  {
-    text: "Mr. Singh bought 1,920 pencils for 320 students. Each student was supposed to get 6 pencils, but fewer students came and each got 3 more pencils. If 240 pencils were left, how many students attended?",
-    answers: ["272", "272 students"]
-  },
-  {
-    text: "A restaurant prepared 2,800 noodles for 350 guests. Each guest was supposed to get 8 noodles, but fewer guests came and each got 3 more noodles. If 385 noodles were left, how many guests attended?",
-    answers: ["300", "300 guests"]
-  },
-  {
-    text: "Mrs. Wang ordered 3,000 dumplings for 500 guests. Each guest was supposed to get 6 dumplings, but fewer guests came and each got 2 more dumplings. If 420 dumplings were left, how many guests attended?",
-    answers: ["420", "420 guests"]
-  },
-  {
-    text: "A school has 2,520 books for 420 classrooms. Each classroom was supposed to get 6 books, but fewer classrooms came and each got 4 more books. If 336 books were left, how many classrooms used books?",
-    answers: ["360", "360 classrooms"]
-  },
-  {
-    text: "Mr. Tan bought 3,600 oranges for 600 families. Each family was supposed to get 6 oranges, but fewer families came and each got 3 more oranges. If 540 oranges were left, how many families attended?",
-    answers: ["480", "480 families"]
-  }
-],
-
-
-hard: [
-  {
-    text: "Mrs. Ahmed ordered 3,750 chicken wings for 500 guests at her festival. Each guest was supposed to get 7.5 wings, but fewer guests came and each got 3.5 more wings. If 525 wings were left, how many guests attended?",
-    answers: ["420", "420 guests"]
-  },
-  {
-    text: "A restaurant prepared 5,400 sushi pieces for 600 customers. Each customer was supposed to get 9 pieces, but fewer customers came and each got 4 more pieces. If 720 pieces were left, how many customers attended?",
-    answers: ["480", "480 customers"]
-  },
-  {
-    text: "Mr. Lee bought 4,800 donuts for 400 students. Each student was supposed to get 12 donuts, but fewer students came and each got 6 more donuts. If 648 donuts were left, how many students attended?",
-    answers: ["340", "340 students"]
-  },
-  {
-    text: "A bakery made 7,200 cookies for 800 families. Each family was supposed to get 9 cookies, but fewer families came and each got 5 more cookies. If 900 cookies were left, how many families attended?",
-    answers: ["640", "640 families"]
-  },
-  {
-    text: "Mrs. Kim ordered 9,000 rice balls for 1,000 guests. Each guest was supposed to get 9 rice balls, but fewer guests came and each got 4 more rice balls. If 1,260 rice balls were left, how many guests attended?",
-    answers: ["840", "840 guests"]
-  },
-  {
-    text: "A store has 8,400 notebooks for 700 classrooms. Each classroom was supposed to get 12 notebooks, but fewer classrooms came and each got 6 more notebooks. If 1,008 notebooks were left, how many classrooms used notebooks?",
-    answers: ["600", "600 classrooms"]
-  },
-  {
-    text: "Mr. Park bought 6,720 apples for 560 families. Each family was supposed to get 12 apples, but fewer families came and each got 5 more apples. If 840 apples were left, how many families attended?",
-    answers: ["480", "480 families"]
-  },
-  {
-    text: "A café prepared 11,000 pastries for 550 customers. Each customer was supposed to get 20 pastries, but fewer customers came and each got 8 more pastries. If 1,600 pastries were left, how many customers attended?",
-    answers: ["450", "450 customers"]
-  },
-  {
-    text: "Mrs. Chen ordered 8,400 candies for 600 children. Each child was supposed to get 14 candies, but fewer children came and each got 7 more candies. If 1,008 candies were left, how many children attended?",
-    answers: ["500", "500 children"]
-  },
-  {
-    text: "A gym has 12,000 exercise balls for 800 teams. Each team was supposed to get 15 balls, but fewer teams came and each got 9 more balls. If 1,800 balls were left, how many teams used balls?",
-    answers: ["600", "600 teams"]
-  },
-  {
-    text: "Mr. Singh bought 9,600 pencils for 640 students. Each student was supposed to get 15 pencils, but fewer students came and each got 7 more pencils. If 1,440 pencils were left, how many students attended?",
-    answers: ["544", "544 students"]
-  },
-  {
-    text: "A restaurant prepared 14,000 noodles for 700 guests. Each guest was supposed to get 20 noodles, but fewer guests came and each got 9 more noodles. If 1,925 noodles were left, how many guests attended?",
-    answers: ["560", "560 guests"]
-  },
-  {
-    text: "Mrs. Wang ordered 15,000 dumplings for 1,000 guests. Each guest was supposed to get 15 dumplings, but fewer guests came and each got 6 more dumplings. If 2,100 dumplings were left, how many guests attended?",
-    answers: ["840", "840 guests"]
-  },
-  {
-    text: "A school has 12,600 books for 840 classrooms. Each classroom was supposed to get 15 books, but fewer classrooms came and each got 8 more books. If 1,680 books were left, how many classrooms used books?",
-    answers: ["720", "720 classrooms"]
-  },
-  {
-    text: "Mr. Tan bought 18,000 oranges for 1,200 families. Each family was supposed to get 15 oranges, but fewer families came and each got 7 more oranges. If 2,700 oranges were left, how many families attended?",
-    answers: ["960", "960 families"]
-  }
-]
-  
+  hard: [
+    {
+      text: "A baker has 3/4 cup of sugar. She splits it equally among 3 recipes. How much sugar is used for each recipe?",
+      answers: ["1/4", "1/4 cup", "0.25 cup"]
+    },
+    {
+      text: "A piece of wood is 8 1/2 feet long. A carpenter cuts off a piece that is 2 3/4 feet long. Then he cuts the remaining into 5 equal pieces. How long is each of the 5 pieces?",
+      answers: ["1.15 feet", "1 3/20 feet", "1.15 ft", "1.15"]
+    },
+    {
+      text: "A store has a shirt originally priced at $35. It is on sale for 20% off. Then there is an additional 5% sales tax on the sale price. What is the final cost?",
+      answers: ["29.40", "$29.40", "29.40 dollars"]
+    },
+    {
+      text: "A rectangular prism is 4 1/2 ft long, 2 1/3 ft wide, and 1 1/2 ft tall. What is the volume?",
+      answers: ["15.75 cubic feet", "15 3/4 cubic feet", "15.75 ft³", "15.75"]
+    },
+    {
+      text: "A bus leaves at 9:40 AM. The trip takes 2 hours 35 minutes. Then there is a 50-minute layover before the next bus leaves. What time does the next bus leave?",
+      answers: ["1:05 PM", "1:05", "1:05 pm"]
+    },
+    {
+      text: "A container holds 2 gallons and 3 quarts of water. How many cups of water is that? (1 gallon = 4 quarts, 1 quart = 4 cups)",
+      answers: ["44", "44 cups", "44 c"]
+    },
+    {
+      text: "A number is multiplied by 6, then 12 is added. The result is 54. What is the number?",
+      answers: ["7"]
+    },
+    {
+      text: "The mean of 4 test scores is 85. Three of the scores are 78, 92, and 80. What is the fourth score?",
+      answers: ["90"]
+    },
+    {
+      text: "Liam reads 1/3 of a book on Monday and 1/4 of the book on Tuesday. He has 55 pages left to read on Wednesday. How many pages are in the book?",
+      answers: ["132", "132 pages"]
+    },
+    {
+      text: "A rectangle has vertices at (2,1), (5,1), (5,4), and (2,4) on a coordinate grid. What is the area of the rectangle?",
+      answers: ["9", "9 square units", "9 units²"]
+    },
+    {
+      text: "A 15.4 ounce bag of almonds is divided into portions of 0.8 ounce each. How many full portions can be made?",
+      answers: ["19", "19 portions", "19 full portions"]
+    },
+    {
+      text: "Calculate 2.5 × (4 + 1.2) – 3.6",
+      answers: ["9.4"]
+    },
+    {
+      text: "A rectangle has a length of 12 cm and a width that is 3 cm less than the length. What is the perimeter?",
+      answers: ["42", "42 cm", "42 centimeters"]
+    },
+    {
+      text: "A baker makes 4.5 dozen cookies. He puts 2/3 of them in boxes. How many cookies are not in boxes?",
+      answers: ["18", "18 cookies"]
+    },
+    {
+      text: "A recipe for 8 servings uses 2 eggs. How many eggs are needed for 20 servings?",
+      answers: ["5", "5 eggs"]
+    }
+  ]
 };
